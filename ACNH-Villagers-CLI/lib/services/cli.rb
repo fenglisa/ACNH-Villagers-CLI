@@ -18,13 +18,43 @@ class CLI
     puts "Here are some things you can do:"
   end
 
+  def menu_choices
+    puts "Enter villager name to see their profile"
+    puts "Enter personality to see villagers of that personality"
+    puts "Enter species to see villagers of that species"
+    puts "Enter 'S' to see the types of species"
+    puts "Enter 'P' to see the types of personalities"
+    puts "Enter 'A' to see all villager names in alphabetical order"
+    puts "Enter 'Q' to quit"
+    puts ""
+  end
+
   def main_menu
 
+    menu_choices
     get_input
 
     while input != "Q" do
-      if Villager.all.any?{|villager| villager.name == input}
+      if input == "Snooty"
+        puts "~~~Please enter the number of your inquiry:"
+        puts "1. Snooty personalities"
+        puts "2. 'Snooty' the villager"
+        get_input
+        if input == "1"
+          puts "---------------The Snooty ones--------------"
+          Villager.all.each do |villager|
+            if villager.personality == "Snooty"
+              puts villager.name
+            end
+          end
+          puts ""
+        elsif input == "2"
+          Villager.all.find{|villager| villager.name == "Snooty"}.profile
+        end
+
+      elsif Villager.all.any?{|villager| villager.name == input}
         Villager.all.find{|villager| villager.name == input}.profile
+
       elsif Villager.all_species.any?{|species| species == input}
         puts "---------------The #{input} crew--------------"
         Villager.all.each do |villager|
@@ -58,20 +88,13 @@ class CLI
       else
         puts "~~~~Invalid choice. Please try again.~~~~"
       end
+      menu_choices
       get_input
     end
   end
 
   def get_input
-    puts "Enter villager name to see their profile"
-    puts "Enter personality to see villagers of that personality"
-    puts "Enter species to see villagers of that species"
-    puts "Enter 'S' to see the types of species"
-    puts "Enter 'P' to see the types of personalities"
-    puts "Enter 'A' to see all villager names in alphabetical order"
-    puts "Enter 'Q' to quit"
-    puts ""
-    self.input = gets.chomp
+    self.input = gets.to_s.chomp
     if self.input.include?("'")
       self.input = self.input.split("'").map(&:capitalize).join("'")
     elsif self.input.include?("-")
