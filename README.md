@@ -1,6 +1,6 @@
 # ACNH Villager Finder
 
-For Animal Crossing: New Horizons residents. Residents can search all New Horizons villagers based on name, personality, or species.
+For Animal Crossing: New Horizons residents. Residents can search all New Horizons villagers based on name, personality, or species. This app utilizes [ACNH API](http://acnhapi.com/).
 
 ## Installation
 
