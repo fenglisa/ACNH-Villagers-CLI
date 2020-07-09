@@ -94,7 +94,7 @@ class CLI
   end
 
   def get_input
-    self.input = gets.to_s.chomp
+    self.input = gets.to_s.strip
     if self.input.include?("'")
       self.input = self.input.split("'").map(&:capitalize).join("'")
     elsif self.input.include?("-")
