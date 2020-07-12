@@ -1,6 +1,6 @@
 # ACNH Villager Finder
 
-For Animal Crossing: New Horizons residents. Residents can search all New Horizons villagers based on name, personality, or species. This app utilizes [ACNH API](http://acnhapi.com/).
+For *Animal Crossing: New Horizons* residents. Residents can search all New Horizons villagers based on name, personality, or species. This app utilizes [ACNH API](http://acnhapi.com/).
 
 ## Installation
 
@@ -23,11 +23,11 @@ Run the following to start the program and follow the on-screen prompts.
 ## Dependencies
 
 Ruby Gems:
-HTTParty
+[HTTParty](https://rubygems.org/gems/httparty/versions/0.13.7)
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/fenglisa/ACNH-Villagers-CLI
+Pull requests are welcome on GitHub at https://github.com/fenglisa/ACNH-Villagers-CLI
 
 ## License
 
