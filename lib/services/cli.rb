@@ -1,10 +1,6 @@
 class CLI
   attr_accessor :input
 
-  def initialize
-    @input = ""
-  end
-
   def run
     welcome
     NewHorizonsAPI.new.get_villagers
