@@ -18,7 +18,6 @@ class Villager
 
   def self.alphabetic_names
     sorted_names = all.collect{|villager| villager.name}.sort
-    sorted_names
   end
 
   def self.all_species

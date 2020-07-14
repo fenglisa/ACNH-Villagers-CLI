@@ -90,13 +90,13 @@ class CLI
   end
 
   def get_input
-    self.input = gets.to_s.strip
-    if self.input.include?("'")
-      self.input = self.input.split("'").map(&:capitalize).join("'")
-    elsif self.input.include?("-")
-      self.input = self.input.split("-").map(&:capitalize).join("-")
+    @input = gets.to_s.strip
+    if @input.include?("'")
+      @input = @input.split("'").map(&:capitalize).join("'")
+    elsif @input.include?("-")
+      @input = @input.split("-").map(&:capitalize).join("-")
     else
-      self.input = self.input.split.map(&:capitalize).join(' ')
+      @input = @input.split.map(&:capitalize).join(' ')
     end
   end
 
