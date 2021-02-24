@@ -31,66 +31,69 @@ class CLI
     get_input
 
     while input != "Q" do
-      if input == "Snooty"
-        puts "~~~Please enter the number of your inquiry:"
-        puts "1. Snooty personalities"
-        puts "2. 'Snooty' the villager"
-        get_input
-        if input == "1"
-          puts "---------------The Snooty ones--------------"
+      case
+      when input == "Snooty"
+          puts "~~~Please enter the number of your inquiry:"
+          puts "1. Snooty personalities"
+          puts "2. 'Snooty' the villager"
+          get_input
+          if input == "1"
+            puts "---------------The Snooty ones--------------"
+            Villager.all.each do |villager|
+              if villager.personality == "Snooty"
+                puts villager.name
+              end
+            end
+            puts ""
+          elsif input == "2"
+            Villager.all.find{|villager| villager.name == "Snooty"}.profile
+          else
+            puts "~~~~Invalid choice. Please try again.~~~~"
+          end
+
+        when Villager.all.any?{|villager| villager.name == input}
+          Villager.all.find{|villager| villager.name == input}.profile
+
+        when Villager.all_species.any?{|species| species == input}
+          puts "---------------The #{input} crew--------------"
           Villager.all.each do |villager|
-            if villager.personality == "Snooty"
+            if villager.species == input
               puts villager.name
             end
           end
           puts ""
-        elsif input == "2"
-          Villager.all.find{|villager| villager.name == "Snooty"}.profile
-        end
-
-      elsif Villager.all.any?{|villager| villager.name == input}
-        Villager.all.find{|villager| villager.name == input}.profile
-
-      elsif Villager.all_species.any?{|species| species == input}
-        puts "---------------The #{input} crew--------------"
-        Villager.all.each do |villager|
-          if villager.species == input
-            puts villager.name
+        when Villager.all_personalities.any?{|personality| personality == input}
+          puts "---------------The #{input} ones--------------"
+          Villager.all.each do |villager|
+            if villager.personality == input
+              puts villager.name
+            end
           end
-        end
-        puts ""
-      elsif Villager.all_personalities.any?{|personality| personality == input}
-        puts "---------------The #{input} ones--------------"
-        Villager.all.each do |villager|
-          if villager.personality == input
-            puts villager.name
+          puts ""
+        when input == "S"
+          puts "---------------Species--------------"
+          Villager.all_species.each do |species_type|
+            puts species_type
           end
+          puts ""
+        when input == "P"
+          puts "---------------Personalities--------------"
+          Villager.all_personalities.each do |personality_type|
+            puts personality_type
+          end
+          puts ""
+        when input == "A"
+          list_all_villagers
+        else
+          puts "~~~~Invalid choice. Please try again.~~~~"
         end
-        puts ""
-      elsif input == "S"
-        puts "---------------Species--------------"
-        Villager.all_species.each do |species_type|
-          puts species_type
-        end
-        puts ""
-      elsif input == "P"
-        puts "---------------Personalities--------------"
-        Villager.all_personalities.each do |personality_type|
-          puts personality_type
-        end
-        puts ""
-      elsif input == "A"
-        list_all_villagers
-      else
-        puts "~~~~Invalid choice. Please try again.~~~~"
-      end
       menu_choices
       get_input
     end
   end
 
   def get_input
-    @input = gets.to_s.strip
+    @input = gets.strip
     if @input.include?("'")
       @input = @input.split("'").map(&:capitalize).join("'")
     elsif @input.include?("-")
